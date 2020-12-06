@@ -1,4 +1,4 @@
-package com.example.androidlabs;
+package com.example.android;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,21 +24,21 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_biodata);
-
+        
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPass = (EditText) findViewById(R.id.editTextPass);
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
-
-        // load user's email address from SharedPreferences
+        
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         email = sharedPreferences.getString(EMAIL, "");
 
-        // Set email address of Email Edit Text
+      
         editTextEmail.setText(email);
-
         buttonLogin.setOnClickListener(new View.OnClickListener() {
+            
             @Override
             public void onClick(View view) {
                 Intent profilePage = new Intent(MainActivity.this, ProfileActivity.class);
@@ -52,8 +52,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-
-        // save a user's email address
+        
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(EMAIL, editTextEmail.getText().toString());
